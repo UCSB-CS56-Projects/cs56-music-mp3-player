@@ -16,10 +16,14 @@ public class MusicPlayerGUI
     private JButton playButton;
     private JButton nextButton;
     private JButton prevButton;
-    
-    private JFrame frame;
     private JTable infoTable;
+    private String[] columnNames = {"Name", "Artist", "Album", "Genre"};
     private JTextField currentlyPlaying;
+
+    private JFrame frame;
+    private JPanel controlPanel;
+    private JPanel tablePanel;
+    private Container panel;
 
     private MusicPlayer mp;
 
@@ -29,7 +33,37 @@ public class MusicPlayerGUI
     
     public void go(){
 	frame = new JFrame();
+	panel = frame.getContentPane();
+	controlPanel = new JPanel();
+	tablePanel = new JPanel();
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	playButton = new JButton(">");
+	nextButton = new JButton(">>");
+	prevButton = new JButton("<<");
+
+	playButton.addActionListener(new PlayButtonListener());
+	nextButton.addActionListener(new NextButtonListener());
+	prevButton.addActionListener(new PrevButtonListener());
+	
+	currentlyPlaying = new JTextField("");
+	currentlyPlaying.setEditable(false);
+	
+	Object[][] placeHolder = new Object[5][5];
+
+	infoTable = new JTable(placeHolder, columnNames);
+
+	controlPanel.add(prevButton);
+	controlPanel.add(playButton);
+	controlPanel.add(nextButton);
+	controlPanel.add(currentlyPlaying);
+	tablePanel.add(infoTable);
+	
+	frame.getContentPane().add(BorderLayout.NORTH, controlPanel);
+	frame.getContentPane().add(BorderLayout.CENTER, tablePanel);
+	frame.setSize(500,500);
+	frame.setVisible(true);
+	
 	// @@@ STUB FINISH ME
     }
     

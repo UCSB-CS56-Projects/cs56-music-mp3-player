@@ -16,6 +16,8 @@
       <classpath>
 	<pathelement location = "build"/>
 	<pathelement location = "lib/junit-4.8.2.jar"/>
+	<pathelement location = "lib/jmf.jar"/>
+	<pathelement location = "lib/mp3plugin.jar"/>
       </classpath>
     </javac>
   </target>

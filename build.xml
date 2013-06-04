@@ -20,8 +20,8 @@
     </javac>
   </target>
   
-  <target name="run" depends = "compile" description="run theMusicPlayer program">
-    <java classname="MusicPlayer" classpath="build" />
+  <target name="run" depends = "compile" description="run the MusicPlayer program">
+    <java classname="MusicPlayerGUI" classpath="build" fork="true" />
   </target>
 
   <target name="clean" description="delete unnecessary files and directories">

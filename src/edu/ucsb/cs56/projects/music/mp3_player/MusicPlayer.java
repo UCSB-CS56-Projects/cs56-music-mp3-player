@@ -1,4 +1,5 @@
-import javafx.scene.media.MediaPlayer;
+package edu.ucsb.cs56.projects.music.mp3_player;
+import javafx.scene.media.*;
 
 /**
    MusicPlayer represents a music player.

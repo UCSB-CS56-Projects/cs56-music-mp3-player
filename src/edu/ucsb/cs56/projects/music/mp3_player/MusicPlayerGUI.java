@@ -1,8 +1,11 @@
 package edu.ucsb.cs56.projects.music.mp3_player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.io.File;
+import java.util.ArrayList;
 
 /**
    MusicPlayerGUI represents a GUI for interacting with the MusicPlayer class. A MusicPlayer can play and pause an mp3, as well as skip to another song in a list of songs in a folder. 
@@ -18,7 +21,7 @@ public class MusicPlayerGUI
     private JButton nextButton;
     private JButton prevButton;
     private JTable infoTable;
-    private String[] columnNames = {"Name", "Artist", "Album", "Genre"};
+    private Object[] columnNames = {"Name", "Blah"};
     private JTextField currentlyPlaying;
 
     private JFrame frame;
@@ -26,7 +29,7 @@ public class MusicPlayerGUI
     private JPanel tablePanel;
     private Container panel;
 
-    private MusicPlayer mp;
+    private ArrayList<String> songNames;
 
     /**
        launches the JFrame, populates it with previous, play / pause, skip buttons, current song field, and table with song information
@@ -49,11 +52,35 @@ public class MusicPlayerGUI
 	
 	currentlyPlaying = new JTextField("");
 	currentlyPlaying.setEditable(false);
+
+	/* get names of mp3s in resources folder */
 	
-	Object[][] placeHolder = new Object[5][5];
+	File[] fileList = new File("resources").listFiles();
+	songNames = new ArrayList<String>();
+	for(File song : fileList)
+	    {
+		if(song.isFile())
+		    {
+			System.out.println(song.getName());
+			songNames.add(song.getName());
+		    }
+	    }
+	
+	/* initialize table for song names, add names to table */
 
-	infoTable = new JTable(placeHolder, columnNames);
-
+	//Object[][] songs = new Object[songNames.size()][1];
+	Object[][] songs = {
+	    {"blah", "blah"},
+	    {"blah", "blah"},
+	    {"blah", "blah"},
+	    {"blah", "blah"},
+	    {"blah", "blah"},
+	};
+	/*for(int i = 0; i < songNames.size(); i++)
+	    {
+		songs[i][1] = songNames.get(i);
+		}*/
+	infoTable = new JTable(songs, columnNames);
 	controlPanel.add(prevButton);
 	controlPanel.add(playButton);
 	controlPanel.add(nextButton);

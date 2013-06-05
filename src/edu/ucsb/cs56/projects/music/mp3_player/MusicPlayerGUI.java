@@ -26,8 +26,8 @@ public class MusicPlayerGUI
 
     private JFrame frame;
     private JPanel controlPanel;
-    private JPanel tablePanel;
     private Container panel;
+    private JScrollPane tableScroller;
 
     private ArrayList<String> songNames;
 
@@ -39,7 +39,6 @@ public class MusicPlayerGUI
 	frame = new JFrame();
 	panel = frame.getContentPane();
 	controlPanel = new JPanel();
-	tablePanel = new JPanel();
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	playButton = new JButton(">");
@@ -49,12 +48,14 @@ public class MusicPlayerGUI
 	playButton.addActionListener(new PlayButtonListener());
 	nextButton.addActionListener(new NextButtonListener());
 	prevButton.addActionListener(new PrevButtonListener());
+
 	
 	currentlyPlaying = new JTextField("");
 	currentlyPlaying.setEditable(false);
 
 	/* get names of mp3s in resources folder */
-	
+	//TODO - refactor this code into a method that we call that accepts parameter of destination
+	/*
 	File[] fileList = new File("resources").listFiles();
 	songNames = new ArrayList<String>();
 	for(File song : fileList)
@@ -65,7 +66,7 @@ public class MusicPlayerGUI
 			songNames.add(song.getName());
 		    }
 	    }
-	
+	*/
 	/* initialize table for song names, add names to table */
 
 	//Object[][] songs = new Object[songNames.size()][1];
@@ -81,14 +82,19 @@ public class MusicPlayerGUI
 		songs[i][1] = songNames.get(i);
 		}*/
 	infoTable = new JTable(songs, columnNames);
+	tableScroller = new JScrollPane(infoTable);
+	tableScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	tableScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	
+	infoTable.setFillsViewportHeight(true);
+	
 	controlPanel.add(prevButton);
 	controlPanel.add(playButton);
 	controlPanel.add(nextButton);
 	controlPanel.add(currentlyPlaying);
-	tablePanel.add(infoTable);
 	
 	frame.getContentPane().add(BorderLayout.NORTH, controlPanel);
-	frame.getContentPane().add(BorderLayout.CENTER, tablePanel);
+	frame.getContentPane().add(BorderLayout.CENTER, tableScroller);
 	frame.setSize(500,500);
 	frame.setVisible(true);
 	

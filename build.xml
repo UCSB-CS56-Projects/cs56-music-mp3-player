@@ -4,7 +4,8 @@
   <property environment="env"/> <!-- load the environment variables --> 
   <property name="webRoot" value="${env.HOME}/public_html/cs56" />
   <property name="webBaseURL" value="http://www.cs.ucsb.edu/~${env.USER}/cs56" />
-  
+
+  <property name="packageName" value="edu.ucsb.cs56.projects.music.mp3_player" />
   <property name="projectName" value="cs56-music-mp3-player" /> 
   <property name="javadocDest" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="javadocURL" value="${webBaseURL}/${projectName}/javadoc" /> 
@@ -23,7 +24,7 @@
   </target>
   
   <target name="run" depends = "compile" description="run the MusicPlayer program">
-    <java classname="MusicPlayerGUI" classpath="build" fork="true" />
+    <java classname="${packageName}.MusicPlayerGUI" classpath="build" fork="true" />
   </target>
 
   <target name="clean" description="delete unnecessary files and directories">
@@ -56,6 +57,9 @@
     <junit haltonerror="no" haltonfailure="no">
       <classpath>
         <pathelement location="lib/junit-4.8.2.jar"/>
+	<pathelement location="lib/jmf.jar"/>
+        <pathelement location = "lib/mp3plugin.jar"/>
+
         <pathelement location="build"/>
       </classpath>
       <batchtest fork="yes">

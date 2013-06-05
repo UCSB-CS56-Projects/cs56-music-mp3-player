@@ -21,7 +21,7 @@ public class MusicPlayerGUI
     private JButton nextButton;
     private JButton prevButton;
     private JTable infoTable;
-    private Object[] columnNames = {"Name", "Blah"};
+    private Object[] columnNames = {"Name", "Artist", "Genre"};
     private JTextField currentlyPlaying;
 
     private JFrame frame;
@@ -54,8 +54,6 @@ public class MusicPlayerGUI
 	currentlyPlaying.setEditable(false);
 
 	/* get names of mp3s in resources folder */
-	//TODO - refactor this code into a method that we call that accepts parameter of destination
-	/*
 	File[] fileList = new File("resources").listFiles();
 	songNames = new ArrayList<String>();
 	for(File song : fileList)
@@ -64,23 +62,19 @@ public class MusicPlayerGUI
 		    {
 			System.out.println(song.getName());
 			songNames.add(song.getName());
+			System.out.println("songNames.size()" + songNames.size());
 		    }
 	    }
-	*/
+	
 	/* initialize table for song names, add names to table */
 
-	//Object[][] songs = new Object[songNames.size()][1];
-	Object[][] songs = {
-	    {"blah", "blah"},
-	    {"blah", "blah"},
-	    {"blah", "blah"},
-	    {"blah", "blah"},
-	    {"blah", "blah"},
-	};
-	/*for(int i = 0; i < songNames.size(); i++)
+	Object[][] songs = new Object[songNames.size()][1];
+       
+	for(int i = 0; i < songNames.size(); i++)
 	    {
+		System.out.println("songNames.size()" + songNames.size());
 		songs[i][1] = songNames.get(i);
-		}*/
+		}
 	infoTable = new JTable(songs, columnNames);
 	tableScroller = new JScrollPane(infoTable);
 	tableScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

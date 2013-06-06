@@ -22,6 +22,7 @@ public class MusicPlayerGUI
     private JButton prevButton;
     private JTable infoTable;
     private Vector<String> columnNames;
+    private Vector<Vector> songRows;
     private JTextField currentlyPlaying;
 
     private JFrame frame;
@@ -56,24 +57,9 @@ public class MusicPlayerGUI
         columnNames.add("Artist");
         columnNames.add("Genre");
 	
-	/* get names of files in resources folder 
-	 TODO: PUT THIS IN ITS OWN METHOD*/
-	File[] fileList = new File("resources").listFiles();
-	/* Vector of Vectors, with each inner Vector containing information about a song */
-	Vector<Vector> songRows = new Vector<Vector>();
-	for(File song : fileList)
-	    {
-		if(song.isFile())
-		    {
-			/* thisSong represents a row in the table of songs corresponding to a specific song */
-			Vector<String> thisSong = new Vector<String>();
-			thisSong.add(song.getName());
-			/* add this row to the 2D Vector that contains all the songs in the table */
-			songRows.addElement(thisSong);
-		    }
-	    }
+	songRows = new Vector<Vector>();
 	
-	/* initialize table for song names, add names to table */
+	populateTable("resources");
 
 	infoTable = new JTable(songRows, columnNames);
 	tableScroller = new JScrollPane(infoTable);
@@ -95,10 +81,35 @@ public class MusicPlayerGUI
 	// @@@ STUB FINISH ME
     }
     
+   
+    /**
+       populates infoTable with information about the songs contained in folder folderName
+       @param folderName folder in which desired files to play in player are stored
+    */
+
+    public void populateTable(String folderName)
+    {
+	// this might need to throw an illegal argument exception
+	/* get names of files in resources folder */ 
+	File[] fileList = new File(folderName).listFiles();
+	/* Vector of Vectors, with each inner Vector containing information about a song */
+	for(File song : fileList)
+	    {
+		if(song.isFile())
+		    {
+			/* thisSong represents a row in the table of songs corresponding to a specific song */
+			Vector<String> thisSong = new Vector<String>();
+			thisSong.add(song.getName());
+			/* add this row to the 2D Vector that contains all the songs in the table */
+			songRows.addElement(thisSong);
+		    }
+	    }
+    }
+    
     /**
        inner class for playButton
     */
-    
+
     public class PlayButtonListener implements ActionListener
     {
 	public void actionPerformed(ActionEvent event)

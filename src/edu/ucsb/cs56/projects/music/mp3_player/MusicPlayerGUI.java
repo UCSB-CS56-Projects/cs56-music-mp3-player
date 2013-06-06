@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 import java.io.File;
 import java.util.ArrayList;
-
+import java.util.Vector;
 /**
    MusicPlayerGUI represents a GUI for interacting with the MusicPlayer class. A MusicPlayer can play and pause an mp3, as well as skip to another song in a list of songs in a folder. 
    
@@ -21,15 +21,13 @@ public class MusicPlayerGUI
     private JButton nextButton;
     private JButton prevButton;
     private JTable infoTable;
-    private Object[] columnNames = {"Name", "Artist", "Genre"};
+    private Vector<String> columnNames;
     private JTextField currentlyPlaying;
 
     private JFrame frame;
     private JPanel controlPanel;
     private Container panel;
     private JScrollPane tableScroller;
-
-    private ArrayList<String> songNames;
 
     /**
        launches the JFrame, populates it with previous, play / pause, skip buttons, current song field, and table with song information
@@ -53,29 +51,31 @@ public class MusicPlayerGUI
 	currentlyPlaying = new JTextField("");
 	currentlyPlaying.setEditable(false);
 
-	/* get names of mp3s in resources folder */
+	columnNames = new Vector<String>();
+        columnNames.add("Name");
+        columnNames.add("Artist");
+        columnNames.add("Genre");
+	
+	/* get names of files in resources folder 
+	 TODO: PUT THIS IN ITS OWN METHOD*/
 	File[] fileList = new File("resources").listFiles();
-	songNames = new ArrayList<String>();
+	/* Vector of Vectors, with each inner Vector containing information about a song */
+	Vector<Vector> songRows = new Vector<Vector>();
 	for(File song : fileList)
 	    {
 		if(song.isFile())
 		    {
-			System.out.println(song.getName());
-			songNames.add(song.getName());
-			System.out.println("songNames.size()" + songNames.size());
+			/* thisSong represents a row in the table of songs corresponding to a specific song */
+			Vector<String> thisSong = new Vector<String>();
+			thisSong.add(song.getName());
+			/* add this row to the 2D Vector that contains all the songs in the table */
+			songRows.addElement(thisSong);
 		    }
 	    }
 	
 	/* initialize table for song names, add names to table */
 
-	Object[][] songs = new Object[songNames.size()][1];
-       
-	for(int i = 0; i < songNames.size(); i++)
-	    {
-		System.out.println("songNames.size()" + songNames.size());
-		songs[i][1] = songNames.get(i);
-		}
-	infoTable = new JTable(songs, columnNames);
+	infoTable = new JTable(songRows, columnNames);
 	tableScroller = new JScrollPane(infoTable);
 	tableScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	tableScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

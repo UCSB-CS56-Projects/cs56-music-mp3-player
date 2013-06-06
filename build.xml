@@ -14,16 +14,20 @@
     <mkdir dir="build" />
     <javac srcdir="src" destdir="build" includeantruntime="false" 
 	      debug="true" debuglevel="lines,vars,source">
-      <classpath>
-	<pathelement location = "build"/>
-	<pathelement location = "lib/junit-4.8.2.jar"/>
-	<pathelement location = "lib/jmf.jar"/>
-	<pathelement location = "lib/mp3plugin.jar"/>
-      </classpath>
+        <classpath>
+         <pathelement location = "build"/>
+         <pathelement location = "lib/junit-4.8.2.jar"/>
+         <pathelement location = "lib/jmf.jar"/>
+         <pathelement location = "lib/mp3plugin.jar"/>
+       </classpath>
     </javac>
   </target>
   
   <target name="run" depends = "compile" description="run the MusicPlayer program">
+    <java classname="${packageName}.MusicPlayerGUI" classpath="build" fork="true" />
+  </target>
+
+  <target name="runlastbuild" description="run the last build of MusicPlayer program">
     <java classname="${packageName}.MusicPlayerGUI" classpath="build" fork="true" />
   </target>
 

@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Vector;
+
+import javax.media.*;
+
 /**
    MusicPlayerGUI represents a GUI for interacting with the MusicPlayer class. A MusicPlayer can play and pause an mp3, as well as skip to another song in a list of songs in a folder. 
    
@@ -115,6 +118,7 @@ public class MusicPlayerGUI
 	public void actionPerformed(ActionEvent event)
 	{
 	    //@@STUB FINISH ME
+	    MusicPlayer.play("Snare.mp3");
 	}
     }
 

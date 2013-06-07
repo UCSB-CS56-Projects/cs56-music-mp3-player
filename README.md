@@ -3,7 +3,7 @@ cs56-music-mp3-player
 
 An app that can play music from an mp3 file
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------
 
 Current State of Project:
 - The project has AudioPlayerGUI with previous, next, and play buttons, as well as a JTable that autopopulates with file info from the resources/ folder.
@@ -31,4 +31,4 @@ Best of luck!
 Evan and Ian
 Spring 2013
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------

@@ -14,17 +14,17 @@ Current State of Project:
 - resources contain some sample .wav and .mp3 files.
 
 Summary of progress with useability reports:
-JavaFX
-We originally thought JavaFX would fulfill our needs, and it certainly has the functionality to do so. The problem lies in compiling and distributing. From cursory research, JFX does not live in a JAR file in the lib/ directory of your project, but instead needs to be built with a special JFX compiler or JFX ant task. Also, CSIL uses OpenJDK, which doesn't have JavaFX installed, but instead OpenJFX (http://openjdk.java.net/projects/openjfx/). 
-Usability: This still has the potential to be the most elegant solution for this project, but it would require a full dedication to JFX over the course of 2 or 3 project point cycles.
+- JavaFX  <br />
+  We originally thought JavaFX would fulfill our needs, and it certainly has the functionality to do so. The problem lies in compiling and distributing. From cursory research, JFX does not live in a JAR file in the lib/ directory of your project, but instead needs to be built with a special JFX compiler or JFX ant task. Also, CSIL uses OpenJDK, which doesn't have JavaFX installed, but instead OpenJFX (http://openjdk.java.net/projects/openjfx/).  <br />
+  Usability: This still has the potential to be the most elegant solution for this project, but it would require a full dedication to JFX over the course of 2 or 3 project point cycles.
 
-JavaMediaFramework (JMF)
-We then researched online and decided to use JMF, but after a lot of tinkering (and the fact that no audio would play), we discovered it hasn't been updated since the early 2000's. 
-Useability: Plain and simple, it's an outdated framework that no longer works.
+- JavaMediaFramework (JMF)  <br />
+  We then researched online and decided to use JMF, but after a lot of tinkering (and the fact that no audio would play), we discovered it hasn't been updated since the early 2000's.  <br /> 
+  Useability: Plain and simple, it's an outdated framework that no longer works.
 
-JavaSound
-We then decided to use an implementation of an MP3 player we found online that uses the JavaSound API. To our dismay, still doesn't work. The AudioPlayer file was updated with JavaDoc / appropriate author information to facilitate use in the future. However, we can't figure out why no audio will play. 
-Useability: The documentation for the framework was not very clear, but it is still a valid option to build this project around.
+- JavaSound  <br />
+  We then decided to use an implementation of an MP3 player we found online that uses the JavaSound API. To our dismay, still doesn't work. The AudioPlayer file was updated with JavaDoc / appropriate author information to facilitate use in the future. However, we can't figure out why no audio will play.  <br />
+  Useability: The documentation for the framework was not very clear, but it is still a valid option to build this project around.
 
 Best of luck!
 

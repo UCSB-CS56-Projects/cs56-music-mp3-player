@@ -12,6 +12,10 @@ import javax.media.format.AudioFormat;
 
 import java.net.URL;
 
+/** A test class for JMF audio player
+	Source: http://www.morgenstille.at/blog/how-to-play-a-mp3-file-in-java-simple-and-beautiful/
+	*/
+
 public class AudioTest {
 	public static void main(String[] args) {
 		Format input1 = new AudioFormat(AudioFormat.MPEGLAYER3);
@@ -23,8 +27,6 @@ public class AudioTest {
 			new Format[]{output},
 			PlugInManager.CODEC
 		);
-		//File f = new File("/resources/3DayWeekend.mp3");
-		//URL u = f.toURI().toURL();
 		try{
 			Player player = Manager.createPlayer(new MediaLocator(new File("resources/3DayWeekend.mp3").toURI().toURL()));
 			System.out.println("starting...");

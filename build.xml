@@ -10,6 +10,7 @@
   <property name="javadocDest" value="${webRoot}/${projectName}/javadoc" /> 
   <property name="javadocURL" value="${webBaseURL}/${projectName}/javadoc" /> 
   
+  <!-- include all the .jar files in the lib/ directory -->
   <path id="path.lib" >
     <fileset dir="lib" includes="**/*.jar" />
   </path>
@@ -21,7 +22,7 @@
     </javac>
   </target>
   
-  <target name="run" depends = "compile" description="run the MusicPlayer program">
+  <target name="run" depends = "compile" description="run the AudioPlayer program">
     <java classname="${packageName}.MusicPlayerGUI" fork="true" >
       <classpath>
         <path refid = "path.lib"/>
@@ -30,7 +31,7 @@
     </java>
   </target>
 
-  <target name="runlastbuild" description="run the last build of MusicPlayer program">
+  <target name="runlastbuild" description="run the last build of AudioPlayer program (does not compile before running)">
     <java classname="${packageName}.MusicPlayerGUI" fork="true" >
       <classpath>
         <path refid = "path.lib"/>
@@ -39,17 +40,13 @@
     </java>
   </target>
 
-  <target name="runaudiotest" depends="compile" >
+  <target name="runaudiotest" depends="compile" description="runs the JMFTest program">
     <java classname="${packageName}.AudioTest" fork="true" >
       <classpath>
         <path refid = "path.lib"/>
         <pathelement location="build"/>
       </classpath>
     </java>
-  </target>
-
-  <target name="runtest" >
-    <java classname="${packageName}.TestingTest" classpath="build" fork="true" />
   </target>
 
   <target name="clean" description="delete unnecessary files and directories">
@@ -78,22 +75,21 @@
     <echo>Javadoc deployed to ${javadocURL}</echo>                             
   </target>
 
+<!-- not needed for this project yet.
   <target name="test" depends="compile">
     <junit haltonerror="no" haltonfailure="no">
       <classpath>
         <pathelement location="lib/junit-4.8.2.jar"/>
-	<pathelement location="lib/jmf.jar"/>
+        <pathelement location="lib/jmf.jar"/>
         <pathelement location = "lib/mp3plugin.jar"/>
-
         <pathelement location="build"/>
       </classpath>
       <batchtest fork="yes">
         <fileset dir="src">
-          <!-- this will pick up every class with a name ending in Test -->
           <include name="*Test.java"/>
         </fileset>
       </batchtest>
       <formatter type="plain" usefile="false" />
     </junit>
   </target>
-</project>
+</project> -->

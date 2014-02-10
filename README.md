@@ -1,4 +1,5 @@
-W14 Ready! (Ian Vernon)
+
+NOT W14 READY---Needs NEW ISSUES and NEW POINT ESTIMATES.
 
 cs56-music-mp3-player
 =====================

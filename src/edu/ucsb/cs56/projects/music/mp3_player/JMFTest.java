@@ -16,7 +16,7 @@ import java.net.URL;
 	Source: http://www.morgenstille.at/blog/how-to-play-a-mp3-file-in-java-simple-and-beautiful/
 	*/
 
-public class AudioTest {
+public class JMFTest {
 	public static void main(String[] args) {
 		Format input1 = new AudioFormat(AudioFormat.MPEGLAYER3);
 		Format input2 = new AudioFormat(AudioFormat.MPEG);

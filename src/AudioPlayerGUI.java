@@ -97,7 +97,14 @@ public class AudioPlayerGUI
 	/* Vector of Vectors, with each inner Vector containing information about a song */
 	for(File song : fileList)
 	    {
-		if(song.isFile())
+		/*ext represents the extension of the song (eg mp3, wav, mp4 etc), used to check if the song is an mp3*/
+		String ext ="";
+		String nameOfSong = song.getName();
+		int i = nameOfSong.lastIndexOf('.');
+		if (i>0){
+		    ext = nameOfSong.substring(i+1);
+		}
+		if(song.isFile() && ext.equals("mp3"))
 		    {
 			/* thisSong represents a row in the table of songs corresponding to a specific song */
 			Vector<String> thisSong = new Vector<String>();

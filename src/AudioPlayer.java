@@ -74,7 +74,7 @@ public class AudioPlayer
 	      ensures threads are synchronized with synchronized statement,
 	      which synchronizes a specific part of a method (as opposed to 
 	      using full synchronized modifier in method declaration, which
-	      would make all parts of a method synchronized
+	      would make all parts of a method synchronized)
 	    */
             synchronized(lock){
                 lock.notifyAll();

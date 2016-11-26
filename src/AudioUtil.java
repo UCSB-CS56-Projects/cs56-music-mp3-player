@@ -12,7 +12,7 @@ import javax.sound.sampled.AudioSystem;
    
    source code is from: http://stackoverflow.com/questions/14959566/java-error-when-trying-to-use-mp3plugin-for-playing-an-mp3-file/14959818#14959818
    
-   @see MusicPlayer
+   @see AudioPlayer
    
    @author fredcrs ( http://stackoverflow.com/users/377398/fredcrs )
    @author Ian Vernon

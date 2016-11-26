@@ -14,7 +14,6 @@ import java.util.Vector;
     used to read metadata within mp3 files
  */
 import com.beaglebuddy.mp3.MP3;
-//import com.beaglebuddy.id3.enums.PictureType;
 
 /**
  * AudioPlayerGUI represents a GUI for interacting with the AudioPlayer class. An AudioPlayer can play and pause an mp3, as well as skip to another song in a list of songs in a folder.

@@ -21,6 +21,8 @@ import javax.sound.sampled.AudioSystem;
 
 */
 
+// AS OF CS56 FALL 2016, THIS CLASS IS NOT BEING USED, BUT IS KEPT IN CASE IT MIGHT PROVIDE A BETTER IMPLEMENTATION IN THE FUTURE
+
 public class AudioUtil
 {
     private static ArrayList<FileMap> cache = new ArrayList<FileMap>();

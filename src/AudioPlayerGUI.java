@@ -1,25 +1,37 @@
 package edu.ucsb.cs56.projects.music.mp3_player;
 
+
 import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.Point;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import java.util.Vector;
 
-/* Third party API: BeagleBuddy (https:/www.beaglebuddy.com)
-    used to read metadata within mp3 files
+/* Third party API: JLayer (http://www.javazoom.net/javalayer/javalayer.html)
+    used to play MP3 files
  */
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+
+/* Third party API: BeagleBuddy (https:/www.beaglebuddy.com)
+    used to read metadata within MP3 files
+ */
+
 import com.beaglebuddy.id3.pojo.AttachedPicture;
 import com.beaglebuddy.mp3.MP3;
 import com.beaglebuddy.id3.enums.PictureType;
 
 /**
- * AudioPlayerGUI represents a GUI for interacting with the AudioPlayer class. An AudioPlayer can play and pause an mp3, as well as skip to another song in a list of songs in a folder.
+ * AudioPlayerGUI represents a GUI for an MP3 player. (It also has functionality, which it shouldn't, if it is only going to be a GUI)
+ * Current functions:
+ * Displays ID3 metadata of MP3 song files(found in a specified folder) in a table
+ * Displays lyrics of a selected song in a text area
+ * Displays album artwork of a selected song in as an icon in a label
+ * Plays a selected song (does not pause, does not stop until song is finished)
+ *
+ * For a quick reference guide to more GUI components, see http://web.mit.edu/6.005/www/sp14/psets/ps4/java-6-tutorial/components.html
  *
  * @author Matthew Rodriguez
  * @version CS56 Fall 2016
@@ -131,7 +143,7 @@ public class AudioPlayerGUI {
         lyricsScroller = new JScrollPane(lyricsTextArea);
         lyricsScroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         albumImageLabel.setIcon(defaultAlbumImage);
-        albumImageLabelDescriber.setText("Album artwork for select song");
+        albumImageLabelDescriber.setText("Album artwork for selected song");
         albumImageLabelDescriber.setEditable(false);
         albumImageLabelDescriber.setHorizontalAlignment(JTextField.CENTER);
         populateTable(songLocation);
@@ -145,7 +157,7 @@ public class AudioPlayerGUI {
     }
 
     /**
-     * adds all modified GUI components to main containers (controlPanel, framePane) of GUI
+     * adds all modified GUI components to main containers of GUI
      */
 
     public void addGUIComponents() {
@@ -186,9 +198,9 @@ public class AudioPlayerGUI {
     }
 
     /**
-     * verifies whether a file is both a song and an MP3
+     * verifies whether a file is an MP3 file
      * @param song the file that is being verified as an MP3
-     * @return boolean true or false
+     * @return boolean true or false if the file is an MP3 file
      */
 
     public boolean isMP3(File song) {
@@ -318,7 +330,32 @@ public class AudioPlayerGUI {
     public class PlayButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            currentlyPlaying.setText("Currently playing: " + currentlySelectedSong);
+            File[] fileArray = new File(songLocation).listFiles();
+            for (File file : fileArray) {
+                if (isMP3(file)) {
+                    try {
+                        MP3 songMP3 = new MP3(file);
+                        if (songMP3.getTitle().equals(currentlySelectedSong)) {
+                            currentlyPlaying.setText("Currently playing: " + currentlySelectedSong);
+                            // Lambda expression for abstract run method in Runnable interface
+                            Runnable playJob = () -> {
+                                try {
+                                    FileInputStream fis = new FileInputStream(file);
+                                    BufferedInputStream bis = new BufferedInputStream(fis);
+                                    Player songPlayer = new Player(bis);
+                                    songPlayer.play();
+                                } catch (IOException | JavaLayerException ex) {
+                                    ex.printStackTrace();
+                                }
+                            };
+                            Thread songMediaThread = new Thread(playJob);
+                            songMediaThread.start();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
         }
     }
 

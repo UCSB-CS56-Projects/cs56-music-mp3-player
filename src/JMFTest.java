@@ -16,6 +16,10 @@ import java.net.URL;
 	Source: http://www.morgenstille.at/blog/how-to-play-a-mp3-file-in-java-simple-and-beautiful/
 	*/
 
+/* Currently not in use
+	JMF audio player is outdated, but might provide some sort of useful function (research on this)
+ */
+
 public class JMFTest {
 	public static void main(String[] args) {
 		Format input1 = new AudioFormat(AudioFormat.MPEGLAYER3);

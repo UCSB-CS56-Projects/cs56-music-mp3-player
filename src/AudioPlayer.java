@@ -1,4 +1,5 @@
 package edu.ucsb.cs56.projects.music.mp3_player;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,10 +9,9 @@ import java.util.logging.Logger;
 import javax.sound.sampled.*;
 
 /**
-   AudioPlayer is a class that plays music / audio files. 
+   AudioPlayer is a class that plays music / audio files.
    
    source code is from: http://stackoverflow.com/questions/14959566/java-error-when-trying-to-use-mp3plugin-for-playing-an-mp3-file/14959818#14959818
-   
    
    @author fredcrs ( http://stackoverflow.com/users/377398/fredcrs )
    @author Ian Vernon
@@ -20,12 +20,14 @@ import javax.sound.sampled.*;
 
 */
 
+// AS OF CS56 FALL 2016, THIS CLASS IS NOT BEING USED, BUT IS KEPT IN CASE IT MIGHT PROVIDE A BETTER IMPLEMENTATION IN THE FUTURE
+
 public class AudioPlayer
 {
     /* buffer size of 4096 bytes - is a standard */
     private int bufferSize = 4096; 
 
-    /* volatile modifer guarantees communication happens between threads
+    /* volatile modifier guarantees communication happens between threads
        when one thread writes to volatile variable, and another thread sees that write, first thread
        tells second about memory's contents up until that write
     */
